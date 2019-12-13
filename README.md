@@ -7,7 +7,7 @@
 # Sistema de Blog :computer: 
 Projeto PHP onde criada uma aplicação RESTful completa.
 
-Exercicio 2: Disciplina de Framework Back-End PHP
+Exercicio 3: Disciplina de Framework Back-End PHP Continuação
 
 ## Pré-requisitos para o projeto
 
