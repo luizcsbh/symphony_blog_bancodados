@@ -23,7 +23,7 @@ $php -S localhost:80 -t public
 
 ## Motivação
 
-Projeto PHP onde criada uma aplicação RESTful completa, será implementada uma API para entender a nuances do Framework Symfony e onde será feita a gestão dos "post" de um blog apresentado pelo Professor Tales Augusto [:email:](mailto:tales.augusto.santos@gmail.com?subject=[Github]%20Projeto%20Simphony%20com%20banco20de%20dados).
+Projeto PHP onde criada uma aplicação RESTful completa, será implementada uma API para entender a nuances do Framework Symfony e onde será feita a gestão dos "post" de um blog apresentado pelo Professor Tales Augusto [:email:](mailto:tales.augusto.santos@gmail.com?subject=[Github]%20Projeto%20Simphony%20com%20banco%20de%20dados).
 
 ## Author
 
