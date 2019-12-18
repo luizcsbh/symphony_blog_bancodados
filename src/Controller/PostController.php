@@ -25,7 +25,7 @@ final class PostController
     {
         $data = json_decode($request->getContent(), true);
 
-        $post = new Post($data['title'],$data['description']);
+        $post = new Post($data['title'], $data['description']);
         $this->entityManager->persist($post);
         $this->entityManager->flush();
 
@@ -44,7 +44,7 @@ final class PostController
             'id' => $post->getId(),
             'title' => $post->title,
             'description' => $post->description,
-            'createAt' => $post->getCreatedAt()->format(Y-m-d),
+            'createAt' => $post->getCreatedAt()->format('Y-m-d'),
         ]);
     }
 
@@ -63,7 +63,7 @@ final class PostController
                 'id' => $post->getId(),
                 'title' => $post->title,
                 'description' => $post->description,
-                'createAt' => $post->getCreatedAt()->format(Y-m-d),
+                'createAt' => $post->getCreatedAt()->format('Y-m-d'),
             ];
         }
         return JsonResponse::create($data);
