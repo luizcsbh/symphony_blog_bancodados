@@ -13,12 +13,18 @@ Exercicio 3: Disciplina de Framework Back-End PHP Continuação
 
 - PHP version 7.4.0
 - Composer version 1.9.1
+- Extensão SQLite Manager para Google Chrome
+- Extensão Postman para Google Chrome
 
 ## Projeto
 
  Inicializando servidor web para a aplicação digite o comando na raiz do projeto:
 ```php
-$php -S localhost:80 -t public
+$php -S localhost:8080 -t public
+```
+Para gerar o banco de dados na raiz do projeto digite o comando:
+```php
+php bin/console doctrine:schema:create
 ```
 
 ## Motivação
