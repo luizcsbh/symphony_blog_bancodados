@@ -3,6 +3,7 @@
 ![stars](https://img.shields.io/github/stars/luizcsbh/symfony-blog)
 [![lincença](https://img.shields.io/github/license/luizcsbh/symfony-blog)](https://github.com/luizcsbh/symfony-blog/blob/master/LICENSE)
 ![code-size](https://img.shields.io/github/languages/code-size/luizcsbh/symfony-blog)
+![build](https://img.shields.io/github/workflow/status/luizcsbh/symphony_blog_bancodados/Blog%20API)
 
 # Sistema de Blog :computer: 
 Projeto PHP onde criada uma aplicação RESTful completa.
