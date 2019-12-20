@@ -31,7 +31,7 @@ final class PostController
      */
     public function create(Request $request):Response
     {
-        $post = $this->serialize->deserialize($request->getContent(), Post::class, 'json');
+        $post = $this->serializer->deserialize($request->getContent(), Post::class, 'json');
 
         $erros = $this->validator->validate($post);
 
