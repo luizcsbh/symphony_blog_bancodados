@@ -8,14 +8,22 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Serializer\SerializerInterface; 
+use Symfony\Component\Validator\Validator\ValidatorInterface;
 
 final class PostController
 {
     private EntityManagerInterface $entityManager;
 
-    public function __construct(EntityManagerInterface $entityManager)
+    private SerializerInterface $serializer;
+
+    private ValidatorInterface $valitador;
+
+    public function __construct(EntityManagerInterface $entityManager, SerializerInterface $serializer, ValidatorInterface $valitador)
     {
         $this->entityManager = $entityManager;
+        $this->serializer = $serializer;
+        $this->valitador = $valitador;
     }
 
     /**
@@ -23,9 +31,13 @@ final class PostController
      */
     public function create(Request $request):Response
     {
-        $data = json_decode($request->getContent(), true);
+        $post = $this->serialize->deserialize($request->getContent(), Post::class, 'json');
 
-        $post = new Post($data['title'], $data['description']);
+        $erros = $this->validator->validate($post);
+
+        if (count($erros)){
+            throw new ValidationException($erros);
+        }
         $this->entityManager->persist($post);
         $this->entityManager->flush();
 
@@ -56,23 +68,17 @@ final class PostController
         /**@var Post {} $posts */
         $posts = $this->entityManager->getRepository(Post::class)->findAll();
         
-        $data = [];
-
-        foreach($posts as $post){
-            $data[] = [
-                'id' => $post->getId(),
-                'title' => $post->title,
-                'description' => $post->description,
-                'createAt' => $post->getCreatedAt()->format('Y-m-d'),
-            ];
+        if (null === $post) {
+            throw new NotFoundHttpException('Post não encontrado');
         }
+        
         return JsonResponse::create($data);
     }
 
     /**
      * @Route("/posts/{id}", methods={"PUT"})
      */
-    public function updater(Request $request, int $id):Response
+    public function update(Request $request, int $id):Response
     {
         /**@var Post $post */
         $post = $this->entityManager->getRepository(Post::class)->find($id);
@@ -89,7 +95,7 @@ final class PostController
     }
 
     /**
-     * @Route("/post/{id}", methods={"DELETE"})
+     * @Route("/posts/{id}", methods={"DELETE"})
      */
     public function delete(int $id): Response
     {
