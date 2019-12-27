@@ -23,7 +23,7 @@ jobs:
       run: cd symphony_blog_bancodados && composer validate
 
     - name: Instala dependências
-      run: cd 02-blog && composer install --prefer-dist --no-progress --no-suggest
+      run: cd symphony_blog_bancodados && composer install --prefer-dist --no-progress --no-suggest
 
     - name: Testes funcionais
       run: cd symphony_blog_bancodados && php bin/phpunit
