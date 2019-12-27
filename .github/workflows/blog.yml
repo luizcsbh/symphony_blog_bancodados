@@ -26,4 +26,4 @@ jobs:
       run: cd 02-blog && composer install --prefer-dist --no-progress --no-suggest
 
     - name: Testes funcionais
-      run: cd 02-blog && bin/phpunit
+      run: cd 02-blog && php bin/phpunit
