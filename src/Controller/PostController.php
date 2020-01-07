@@ -19,13 +19,13 @@ final class PostController
 
     private SerializerInterface $serializer;
 
-    private ValidatorInterface $valitador;
+    private ValidatorInterface $validador;
 
-    public function __construct(EntityManagerInterface $entityManager, SerializerInterface $serializer, ValidatorInterface $valitador)
+    public function __construct(EntityManagerInterface $entityManager, SerializerInterface $serializer, ValidatorInterface $validador)
     {
         $this->entityManager = $entityManager;
         $this->serializer = $serializer;
-        $this->valitador = $valitador;
+        $this->validador = $validador;
     }
 
     /**
@@ -68,7 +68,7 @@ final class PostController
         /**@var Post {} $posts */
         $posts = $this->entityManager->getRepository(Post::class)->findAll();
         
-        return JsonResponse::fromJsonString($this->serializer->serialize($post, 'json'));
+        return JsonResponse::fromJsonString($this->serializer->serialize($posts, 'json'));
     }
 
     /**
