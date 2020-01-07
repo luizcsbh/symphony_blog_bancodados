@@ -8,7 +8,8 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @ORM\Entity()
  */
 
-final class Post {
+final class Post
+{
      
     /**
      * @ORM\Id()
@@ -36,16 +37,20 @@ final class Post {
      */      
     private \DateTime $createdAt;
 
-    public function __construct(string $title = null, string $description = null) {
+    public function __construct(string $title = null, string $description = null)
+    {
         $this->title = $title;
         $this->description = $description;
         $this->createdAt = new \DateTime();
     }
-    public function getId() {
+    
+    public function getId()
+    {
         return $this->id;
     }
 
-    public function getCreatedAt(): \Datetime {
+    public function getCreatedAt(): \Datetime
+    {
         return $this->createdAt;
     }
 

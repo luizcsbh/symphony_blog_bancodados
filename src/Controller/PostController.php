@@ -4,11 +4,13 @@ namespace App\Controller;
 
 use App\Entity\Post;
 use Doctrine\ORM\EntityManagerInterface;
+use App\Exception\ValidationException;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Serializer\SerializerInterface; 
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 
 final class PostController
@@ -52,12 +54,15 @@ final class PostController
         /**@var Post $post */
         $post = $this->entityManager->getRepository(Post::class)->find($id);
         
-        return JsonResponse::create([
+        /*
+         JsonResponse::create([
             'id' => $post->getId(),
             'title' => $post->title,
             'description' => $post->description,
             'createAt' => $post->getCreatedAt()->format('Y-m-d'),
         ]);
+        */
+        return JsonResponse::fromJsonString($this->serializer->serialize($post, 'json'));
     }
 
     /**
@@ -68,11 +73,14 @@ final class PostController
         /**@var Post {} $posts */
         $posts = $this->entityManager->getRepository(Post::class)->findAll();
         
+        /*
         if (null === $post) {
             throw new NotFoundHttpException('Post não encontrado');
         }
         
         return JsonResponse::create($data);
+        */
+        return JsonResponse::fromJsonString($this->serializer->serialize($post, 'json'));
     }
 
     /**
@@ -105,7 +113,6 @@ final class PostController
         $this->entityManager->flush();
 
         return new Response('',Response::HTTP_NO_CONTENT);
-    }
-    
+    } 
 }
 ?>
