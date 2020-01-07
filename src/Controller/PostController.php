@@ -54,14 +54,9 @@ final class PostController
         /**@var Post $post */
         $post = $this->entityManager->getRepository(Post::class)->find($id);
         
-        /*
-         JsonResponse::create([
-            'id' => $post->getId(),
-            'title' => $post->title,
-            'description' => $post->description,
-            'createAt' => $post->getCreatedAt()->format('Y-m-d'),
-        ]);
-        */
+        if (null === $post){
+            throw new NotFoundHttpException('Post não encontrado');
+        }
         return JsonResponse::fromJsonString($this->serializer->serialize($post, 'json'));
     }
 
@@ -73,13 +68,6 @@ final class PostController
         /**@var Post {} $posts */
         $posts = $this->entityManager->getRepository(Post::class)->findAll();
         
-        /*
-        if (null === $post) {
-            throw new NotFoundHttpException('Post não encontrado');
-        }
-        
-        return JsonResponse::create($data);
-        */
         return JsonResponse::fromJsonString($this->serializer->serialize($post, 'json'));
     }
 
