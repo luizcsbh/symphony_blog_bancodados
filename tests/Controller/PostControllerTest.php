@@ -8,14 +8,13 @@ use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\Tools\SchemaTool;
 use Doctrine\ORM\Tools\ToolsException;
 use Symfony\Bundle\FrameworkBundle\KernelBrowser;
-use Symfony\Bundle\FrameworkBundle\Test\WebtestCase;
+use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Valitador\Valitador\ValitadorInterface;
 
-class PostControllerTest extends WebtestCase
+final class PostControllerTest extends WebTestCase
 {
     private EntityManagerInterface $em;
-
     private KernelBrowser $client;
     
     public function setUp(): void
