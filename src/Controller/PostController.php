@@ -19,13 +19,13 @@ final class PostController
 
     private SerializerInterface $serializer;
 
-    private ValidatorInterface $validador;
+    private ValidatorInterface $validator;
 
-    public function __construct(EntityManagerInterface $entityManager, SerializerInterface $serializer, ValidatorInterface $validador)
+    public function __construct(EntityManagerInterface $entityManager, SerializerInterface $serializer, ValidatorInterface $validator)
     {
         $this->entityManager = $entityManager;
         $this->serializer = $serializer;
-        $this->validador = $validador;
+        $this->validator = $validator;
     }
 
     /**
