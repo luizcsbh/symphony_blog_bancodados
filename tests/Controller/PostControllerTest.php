@@ -42,8 +42,8 @@ final class PostControllerTest extends WebTestCase
     public function test_create_post():void
     {
         $this->client->request('POST', '/posts',[],[],[], json_encode([
-            'title' => 'Primeiro Teste Funcional',
-            'description' => 'Alguma descrição'
+            'title' => 'Primeiro Teste Funcional com Symfony',
+            'description' => 'Descrição da minha primeira aplicação'
         ]));
         $this->assertEquals(Response::HTTP_CREATED, $this->client->getResponse()->getStatusCode());
     }
@@ -70,7 +70,6 @@ final class PostControllerTest extends WebTestCase
     public function test_create_post_with_invalid_title(): void
     {
         $this->client->request('POST', '/posts',[],[],[], json_encode([
-            'title' => null,
             'description' => 'Alguma descrição'
         ]));
         $this->assertEquals(Response::HTTP_BAD_REQUEST, $this->client->getResponse()->getStatusCode());
@@ -90,7 +89,7 @@ final class PostControllerTest extends WebTestCase
     
     public function test_list_all_post(): void
     {
-        $post = new Post("test", "test");
+        $post = new Post("post", "Conteúdo das postagens");
         $this->em->persist($post);
         $this->em->flush();
     
